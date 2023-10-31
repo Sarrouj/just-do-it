@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>just do it</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container flexRow headerContainer">
+            <a href="#" class="About">About</a>
+            <span class="logo">Just Do It</span>
+            <a href="#" class="Reset">Reset</a>
+        </div>
+        <div class="headerContent container">
+            <p class="headerP">A digital ally for task mastery - your to-do list web app, where productivity meets organization</p>
+            <button class="headerBtn">Start</button>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <form action="#">
+                <div class="task flexColumn gap">
+                    <label for="#">Task</label>
+                    <input type="text">
+                </div>
+                <div class="description flexColumn gap">
+                    <label for="Description">Description</label>
+                    <textarea name="Description" id="Description" cols="30" rows="5"></textarea>
+                </div>
+                <div class="date flexRow">
+                    <div class="startDate flexColumn gap">
+                        <label for="startDate">Start Date</label>
+                        <input type="date">
+                    </div>
+                    <div class="endDate flexColumn gap">
+                        <label for="endDate">End Date</label>
+                        <input type="date">
+                    </div>
+                </div>
+                <div class="priority flexColumn gap">
+                    <label for="priority">Priority</label>
+                    <div class="radioContainer flexRow">
+                        <div class="low flexRow radioGap">
+                            <input type="radio" id="Low" name="priority">
+                            <label for="Low">Low</label>
+                        </div>
+                        <div class="middle radioGap flexRow">
+                            <input type="radio" id="Midle" name="priority">
+                            <label for="Midle">Midle</label>
+                        </div>
+                        <div class="urgent radioGap flexRow">
+                            <input type="radio" id="Urgent" name="priority">
+                            <label for="Urgent">Urgent</label>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" class="button" value="Add">
+                <section>
+                    <div class="title-Filters flexRow">
+                        <div class="title">
+                        </div>
+                        <ul class="flexRow">
+                            <li>Low</li>
+                            <li>Middle</li>
+                            <li>Urgent</li>
+                            <li>Completed</li>
+                        </ul>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </main>
+</body>
+    <script src="./main.js"></script>
+</html>
