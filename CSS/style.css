@@ -194,6 +194,7 @@ section{
 
 section .title-Filters {
     justify-content: space-between;
+    align-items: center;
 }
 
 section .title-Filters h4{
@@ -235,6 +236,7 @@ section .title-Filters ul :nth-child(4){
 /* tasks */
 .tasksContainer{
     margin-top: 3vh;
+    gap: 2vh;
 }
 
 .tasksContainer > li{
@@ -271,3 +273,13 @@ section .title-Filters ul :nth-child(4){
 .completed{
     color: rgb(95, 180, 64) ;
 }
+
+/* Error */
+.error{
+    color: red;
+    font-weight: var(--fw3);
+    font-size: 0.9rem;
+    margin-left: 1vw;
+}
+
+/* Label Priority Color */

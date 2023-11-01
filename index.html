@@ -24,22 +24,22 @@
     </header>
     <main>
         <div class="container">
-            <form action="#">
+            <form action="#" id="form">
                 <div class="task flexColumn gap">
-                    <label for="#">Task</label>
+                    <label for="#">Task <span class="error errorTitle"></span></label>
                     <input type="text" class="taskTitle">
                 </div>
                 <div class="description flexColumn gap">
-                    <label for="Description">Description</label>
+                    <label for="Description">Description <span class="error errorDescription"></span></label>
                     <textarea name="Description" id="Description" cols="30" rows="5" class="descriptionTextArea"></textarea>
                 </div>
                 <div class="date flexRow">
                     <div class="startDate flexColumn gap">
-                        <label for="startDate">Start Date</label>
+                        <label for="startDate">Start Date <span class="error startError"></span></label>
                         <input type="date" class="startDateInput">
                     </div>
                     <div class="endDate flexColumn gap">
-                        <label for="endDateInput">End Date</label>
+                        <label for="endDateInput">End Date <span class="error endError"></span></label>
                         <input type="date" class="endDateInput">
                     </div>
                 </div>
@@ -48,11 +48,11 @@
                     <div class="radioContainer flexRow">
                         <div class="low flexRow radioGap">
                             <input type="radio" id="Low" name="priority" checked>
-                            <label for="Low">Low</label>
+                            <label for="Low" >Low</label>
                         </div>
                         <div class="middle radioGap flexRow">
                             <input type="radio" id="Midle" name="priority">
-                            <label for="Midle">Midle</label>
+                            <label for="Midle" >Midle</label>
                         </div>
                         <div class="urgent radioGap flexRow">
                             <input type="radio" id="Urgent" name="priority">
@@ -68,7 +68,7 @@
                         <ul class="flexRow filters">
                         </ul>
                     </div>
-                    <ul class="tasksContainer flexRow">
+                    <ul class="tasksContainer flexColumn">
                         <li class="flexRow">
                             <div class="tasksHeader flexRow">
                                 <input type="radio" name="task" id="task">
