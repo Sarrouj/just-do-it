@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>just do it</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,27 +27,27 @@
             <form action="#">
                 <div class="task flexColumn gap">
                     <label for="#">Task</label>
-                    <input type="text">
+                    <input type="text" class="taskTitle">
                 </div>
                 <div class="description flexColumn gap">
                     <label for="Description">Description</label>
-                    <textarea name="Description" id="Description" cols="30" rows="5"></textarea>
+                    <textarea name="Description" id="Description" cols="30" rows="5" class="descriptionTextArea"></textarea>
                 </div>
                 <div class="date flexRow">
                     <div class="startDate flexColumn gap">
                         <label for="startDate">Start Date</label>
-                        <input type="date">
+                        <input type="date" class="startDateInput">
                     </div>
                     <div class="endDate flexColumn gap">
-                        <label for="endDate">End Date</label>
-                        <input type="date">
+                        <label for="endDateInput">End Date</label>
+                        <input type="date" class="endDateInput">
                     </div>
                 </div>
                 <div class="priority flexColumn gap">
                     <label for="priority">Priority</label>
                     <div class="radioContainer flexRow">
                         <div class="low flexRow radioGap">
-                            <input type="radio" id="Low" name="priority">
+                            <input type="radio" id="Low" name="priority" checked>
                             <label for="Low">Low</label>
                         </div>
                         <div class="middle radioGap flexRow">
@@ -64,13 +65,22 @@
                     <div class="title-Filters flexRow">
                         <div class="title">
                         </div>
-                        <ul class="flexRow">
-                            <li>Low</li>
-                            <li>Middle</li>
-                            <li>Urgent</li>
-                            <li>Completed</li>
+                        <ul class="flexRow filters">
                         </ul>
                     </div>
+                    <ul class="tasksContainer flexRow">
+                        <li class="flexRow">
+                            <div class="tasksHeader flexRow">
+                                <input type="radio" name="task" id="task">
+                                <p class="task urgent">Complete JS</p>
+                            </div>
+                            <ul class="iconsContainer flexRow urgent">
+                                <li><i class="fa-solid fa-plus"></i></li>
+                                <li><i class="fa-solid fa-trash"></i></i></li>
+                                <li><i class="fa-solid fa-arrow-turn-down"></i></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </section>
             </form>
         </div>
