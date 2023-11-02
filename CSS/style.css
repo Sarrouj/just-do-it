@@ -236,7 +236,6 @@ section .title-Filters ul :nth-child(4){
 /* tasks */
 .tasksContainer{
     margin-top: 3vh;
-    gap: 2vh;
 }
 
 .tasksContainer > li{
@@ -256,6 +255,7 @@ section .title-Filters ul :nth-child(4){
 }
 .tasksContainer > li .iconsContainer li {
     transition: .8s ease-in-out;
+    cursor: pointer;
 }
 .tasksContainer > li .iconsContainer li:hover {
     transform: scale(1.1);
@@ -282,4 +282,48 @@ section .title-Filters ul :nth-child(4){
     margin-left: 1vw;
 }
 
-/* Label Priority Color */
+/* Date Bar*/
+.startEndContainer{
+    background-color: white;
+    padding: 2vh 2vw;
+    border-top: 1px solid rgb(231, 231, 231);
+    border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.startEndContainer :nth-child(2){
+    font-weight: var(--fw6);
+    font-size: 0.9rem;
+}
+
+.startEndContainer :nth-child(2) span{
+    font-weight: var(--fw4);
+    color: #0C3441;
+    font-size: 0.9rem;
+    margin-left: 0.5vw;
+}
+
+.startEndContainer > div {
+    gap: 3vw;
+}
+
+.startEndContainer > div > div {
+    font-weight: var(--fw6);
+    font-size: 0.9rem;
+}
+
+.startEndContainer > div > div > span {
+    font-weight: var(--fw4);
+    color: #0C3441;
+    font-size: 0.9rem;
+    margin-left: 0.5vw;
+}
+
+.tasksContainer .DescriptionContainer {
+    height: auto;
+    margin-bottom: 2vh;
+}
+
+.tasksContainer .DescriptionContainer p {
+    font-size: 0.86rem;
+    color: #0C3441;
+}
