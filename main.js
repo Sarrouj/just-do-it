@@ -20,8 +20,6 @@ let radioMidle = document.getElementById('Midle');
 let radioUrgent = document.getElementById('Urgent');
 
 let existingTasks;
-
-
 // Animate Header
 btn.addEventListener('click', ()=>{
     header.classList.add('animation');
@@ -62,28 +60,28 @@ function taskHeader(){
 }
 
 // generate Colors to Output
-function generateColors(ul, p, fromDiv, toDiv, remainingDev){
+function generateColors(p, iconsDiv, fromDiv, toDiv, remainingDiv){
     switch(true){
         case radioLow.checked:
-            ul.classList.add('low');
+            iconsDiv.classList.add('low');
             p.classList.add('low');
             fromDiv.classList.add('low');
             toDiv.classList.add('low');
-            remainingDev.classList.add('low');
+            remainingDiv.classList.add('low');
             break;
         case radioMidle.checked:
-            ul.classList.add('middle');
+            iconsDiv.classList.add('middle');
             p.classList.add('middle');
             fromDiv.classList.add('middle');
             toDiv.classList.add('middle');
-            remainingDev.classList.add('middle');
+            remainingDiv.classList.add('middle');
             break;
         case radioUrgent.checked:
-            ul.classList.add('urgent');
+            iconsDiv.classList.add('urgent');
             p.classList.add('urgent');
             fromDiv.classList.add('urgent');
             toDiv.classList.add('urgent');
-            remainingDev.classList.add('urgent');
+            remainingDiv.classList.add('urgent');
             break;
     }
 }
@@ -111,176 +109,124 @@ function generate(){
     let taskId = Date.now();
     localStorageGenerate(taskId);
 
-    let li = document.createElement('li');
-    li.setAttribute('class', 'flexRow');
-    let div = document.createElement('div');
-    div.setAttribute('class', 'tasksHeader flexRow');
-    let taskinput = document.createElement('input');
-    taskinput.setAttribute('type', 'radio');
-    let paragprah = document.createElement('p');
-    paragprah.setAttribute('class', 'task');
-    let content = document.createTextNode(taskTitle.value);
+    // Generate Task Title Bar
+    let liTask = document.createElement('li');
+    liTask.className = 'task';
+    liTask.setAttribute('id', taskId);
+    let taskTitltBarDiv = document.createElement('div');
+    taskTitltBarDiv.setAttribute('class', 'taskTitleBar flexRow');
+    let radioTitleDiv = document.createElement('div');
+    radioTitleDiv.setAttribute('class', 'tasksHeader flexRow');
+    let inputRadio = document.createElement('input');
+    inputRadio.setAttribute('type', 'radio');
+    let taskp = document.createElement('p');
+    taskp.setAttribute('class', 'task');
+    taskp.textContent = taskTitle.value;
 
-    tasksContainer.appendChild(li);
-    li.appendChild(div);
-    div.appendChild(taskinput);
-    div.appendChild(paragprah);
-    paragprah.appendChild(content);
+    radioTitleDiv.appendChild(inputRadio);
+    radioTitleDiv.appendChild(taskp);
+    taskTitltBarDiv.appendChild(radioTitleDiv);
 
-    let ul = document.createElement('ul');
-    ul.setAttribute('class', 'iconsContainer flexRow');
-    let liCon1 = document.createElement('li');
-    let liCon2 = document.createElement('li');
-    let liCon3 = document.createElement('li');
+    let iconsDiv = document.createElement('div');
+    iconsDiv.setAttribute('class','iconsContainerurgent flexRow');
     let icon1 = document.createElement('i');
     icon1.setAttribute('class', 'fa-solid fa-plus');
     let icon2 = document.createElement('i');
     icon2.setAttribute('class', 'fa-solid fa-trash');
     let icon3 = document.createElement('i');
     icon3.setAttribute('class', 'fa-solid fa-arrow-turn-down');
-    icon3.setAttribute('id', taskId)
+    icon3.setAttribute('id', taskId);
+    icon2.setAttribute('id', taskId);
+    icon1.setAttribute('id', taskId);
 
-    liCon1.appendChild(icon1);
-    liCon2.appendChild(icon2);
-    liCon3.appendChild(icon3);
+    iconsDiv.appendChild(icon1);
+    iconsDiv.appendChild(icon2);
+    iconsDiv.appendChild(icon3);
+    taskTitltBarDiv.appendChild(iconsDiv);
 
-    ul.appendChild(liCon1);
-    ul.appendChild(liCon2);
-    ul.appendChild(liCon3);
-    li.appendChild(ul);
-
-    // Define a variable to track visibility
-    let detailsVisible = false;
+    liTask.appendChild(taskTitltBarDiv);
+    tasksContainer.appendChild(liTask);
 
     // Generate Time Bar and Description with toggeling
     icon3.addEventListener('click', (e)=> {
         let clickedElementId = e.target.id;
-        
-        if(detailsVisible){
-            // Hide Details
-            removeDetails();
-        }else{
-            // show Details
-            showDetails(clickedElementId);
+        let allTasks = tasksContainer.getElementsByTagName("li");
+       
+        for(const task of allTasks){
+            if(task.id == clickedElementId){
+                if(task.children.length == 3){
+                    task.children[task.children.length-1].remove();
+                    task.children[task.children.length-1].remove();
+                    
+                }else{
+                    showDetails(clickedElementId);
+                }
+                break;
+            }
         }
-        //  Toggle 
-        detailsVisible = !detailsVisible;
-        console.log(detailsVisible)
+    })
+
+    icon2.addEventListener('click', (e)=> {
+        let clickedId = e.target.id;
+        let allTasks = tasksContainer.getElementsByTagName("li");
+       
+        for(const task of allTasks){
+            if(task.id == clickedId){
+                task.remove();
+                break;
+            }
+        }
     })
 
     function showDetails(clickedElementId){
         for(const task of existingTasks){
             if(task.id == clickedElementId){
-                let startEndContainer = document.createElement('li');
-                startEndContainer.setAttribute('class', 'flexRow startEndContainer');
-                let divContainer = document.createElement('div');
-                divContainer.className = 'flexRow';
-
+                let timeBar = document.createElement('div');
+                timeBar.setAttribute('class','flexRow startEndContainer');
+                let fromEndContainer = document.createElement('div');
+                fromEndContainer.className = 'flexRow';
                 let fromDiv = document.createElement('div');
+                fromDiv.className = 'from';
                 let toDiv = document.createElement('div');
-                let fromContent = document.createTextNode('From :');
-                let toContent = document.createTextNode('To :');
+                toDiv.className = 'to';
+                fromDiv.textContent = 'From :';
+                toDiv.textContent = 'To :';
                 let fromSpan = document.createElement('span');
                 let toSpan = document.createElement('span');
+                fromSpan.className = 'fromSpan';
+                toSpan.className = 'toSpan';
 
                 fromSpan.textContent = task.startDate;
                 toSpan.textContent = task.endDate;
 
-
-                fromDiv.appendChild(fromContent);
-                toDiv.appendChild(toContent);
                 fromDiv.appendChild(fromSpan);
                 toDiv.appendChild(toSpan);
 
-                let remainingDev = document.createElement('div');
-                remainingDev.setAttribute('class', 'remaining');
-                let remainingContent = document.createTextNode('The Remaining Time :');
-                remainingDev.appendChild(remainingContent);
-                let countDownSpan = document.createElement('span');
-                remainingDev.appendChild(countDownSpan);
+                fromEndContainer.appendChild(fromDiv);
+                fromEndContainer.appendChild(toDiv);
+                timeBar.appendChild(fromEndContainer);
 
-                let DescriptionContainer = document.createElement('li');
-                DescriptionContainer.setAttribute('class', 'DescriptionContainer');
-                let p = document.createElement('p');
-                p.textContent = task.description;
-                DescriptionContainer.appendChild(p);
+                let remainingDiv = document.createElement('remaining');
+                remainingDiv.className = 'remaining';
+                remainingDiv.textContent = 'The Remaining Time :';
 
-                divContainer.appendChild(fromDiv);
-                divContainer.appendChild(toDiv);
-                startEndContainer.appendChild(divContainer);
-                startEndContainer.appendChild(remainingDev);
-                tasksContainer.appendChild(startEndContainer);
-                tasksContainer.appendChild(DescriptionContainer);
-                generateColors(fromDiv, toDiv, remainingDev);
+                timeBar.appendChild(remainingDiv);
+                liTask.appendChild(timeBar);
+
+                // description
+                let descriptionDiv = document.createElement('div');
+                descriptionDiv.className = 'DescriptionContainer';
+                let descriptionP = document.createElement('p');
+                descriptionP.textContent = task.description;
+                descriptionDiv.appendChild(descriptionP);
+                liTask.appendChild(descriptionDiv);
+
+                generateColors(fromDiv, toDiv, remainingDiv);
                 break;
             }
         }
     }
-
-    function removeDetails(){
-        for(const task of existingTasks){
-            if(task.id == clickedElementId){
-                // let startEndContainer = document.createElement('li');
-                // startEndContainer.setAttribute('class', 'flexRow startEndContainer');
-                // let divContainer = document.createElement('div');
-                // divContainer.className = 'flexRow';
-
-                // let fromDiv = document.createElement('div');
-                // let toDiv = document.createElement('div');
-                // let fromContent = document.createTextNode('From :');
-                // let toContent = document.createTextNode('To :');
-                // let fromSpan = document.createElement('span');
-                // let toSpan = document.createElement('span');
-
-                // fromSpan.textContent = task.startDate;
-                // toSpan.textContent = task.endDate;
-
-
-                // fromDiv.appendChild(fromContent);
-                // toDiv.appendChild(toContent);
-                // fromDiv.appendChild(fromSpan);
-                // toDiv.appendChild(toSpan);
-
-                // let remainingDev = document.createElement('div');
-                // remainingDev.setAttribute('class', 'remaining');
-                // let remainingContent = document.createTextNode('The Remaining Time :');
-                // remainingDev.appendChild(remainingContent);
-                // let countDownSpan = document.createElement('span');
-                // remainingDev.appendChild(countDownSpan);
-
-                // let DescriptionContainer = document.createElement('li');
-                // DescriptionContainer.setAttribute('class', 'DescriptionContainer');
-                // let p = document.createElement('p');
-                // p.textContent = task.description;
-                // DescriptionContainer.appendChild(p);
-
-                // divContainer.appendChild(fromDiv);
-                // divContainer.appendChild(toDiv);
-                // startEndContainer.appendChild(divContainer);
-                // startEndContainer.appendChild(remainingDev);
-                // tasksContainer.appendChild(startEndContainer);
-                // tasksContainer.appendChild(DescriptionContainer);
-                // generateColors(fromDiv, toDiv, remainingDev);
-                // break;
-
-                // Remove the details elements if they exist
-
-                let startEndContainers = document.querySelectorAll('.startEndContainer');
-                let descriptionContainers = document.querySelectorAll('.DescriptionContainer');
-                
-                for (const container of startEndContainers) {
-                    container.remove();
-                }
-            
-                for (const container of descriptionContainers) {
-                    container.remove();
-                }
-
-
-            }
-        }
-    }
-    generateColors(ul, paragprah);
+    generateColors(taskp, iconsDiv);
 }
 
 // check if inputs not spplaying the requirements

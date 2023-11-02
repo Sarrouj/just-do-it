@@ -233,34 +233,6 @@ section .title-Filters ul :nth-child(4){
 }
 
 
-/* tasks */
-.tasksContainer{
-    margin-top: 3vh;
-}
-
-.tasksContainer > li{
-    width: 100%;
-    height: 7.5vh;
-    padding: 2vh 2vw;
-    background-color: white;
-    align-content: center;
-    justify-content: space-between;
-}
-
-.tasksContainer > li .tasksHeader{
-    gap: 2vw;
-}
-.tasksContainer > li .iconsContainer{
-    gap: 2vw;
-}
-.tasksContainer > li .iconsContainer li {
-    transition: .8s ease-in-out;
-    cursor: pointer;
-}
-.tasksContainer > li .iconsContainer li:hover {
-    transform: scale(1.1);
-}
-
 .low{
     color: rgba(0,162,219,1);
 }
@@ -282,48 +254,64 @@ section .title-Filters ul :nth-child(4){
     margin-left: 1vw;
 }
 
-/* Date Bar*/
-.startEndContainer{
-    background-color: white;
-    padding: 2vh 2vw;
-    border-top: 1px solid rgb(231, 231, 231);
-    border-bottom: 1px solid rgb(231, 231, 231);
+/* Tasks*/
+.tasksContainer{
+    margin-top: 2vh;
 }
 
-.startEndContainer :nth-child(2){
-    font-weight: var(--fw6);
-    font-size: 0.9rem;
-}
-
-.startEndContainer :nth-child(2) span{
-    font-weight: var(--fw4);
-    color: #0C3441;
-    font-size: 0.9rem;
-    margin-left: 0.5vw;
-}
-
-.startEndContainer > div {
-    gap: 3vw;
-}
-
-.startEndContainer > div > div {
-    font-weight: var(--fw6);
-    font-size: 0.9rem;
-}
-
-.startEndContainer > div > div > span {
-    font-weight: var(--fw4);
-    color: #0C3441;
-    font-size: 0.9rem;
-    margin-left: 0.5vw;
-}
-
-.tasksContainer .DescriptionContainer {
-    height: auto;
+.tasksContainer > .task{
     margin-bottom: 2vh;
 }
 
-.tasksContainer .DescriptionContainer p {
-    font-size: 0.86rem;
-    color: #0C3441;
+.tasksContainer .task > .taskTitleBar{
+    width: 100%;
+    height: 6vh;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vh 2vw;
+}
+.tasksContainer .task > .taskTitleBar > .tasksHeader{
+    gap: 2vw
+}
+
+.tasksContainer .task > .taskTitleBar .iconsContainerurgent{
+    gap: 2vw;
+    cursor: pointer;
+}
+
+.tasksContainer .startEndContainer{
+    width: 100%;
+    height: 5vh;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vh 2vw;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    border-top: 1px solid rgb(210, 210, 210);
+}
+
+.tasksContainer .startEndContainer > div {
+    gap: 2vw;
+}
+
+.tasksContainer .startEndContainer .from, .to{
+    font-weight: var(--fw6);
+}
+
+.tasksContainer .startEndContainer > div span{
+    color: black;
+    font-weight: var(--fw4);
+    font-size: 0.9rem;
+}
+
+.tasksContainer .DescriptionContainer{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    padding: 1vh 1vw;
+}
+
+.tasksContainer .DescriptionContainer > p {
+    font-size: 0.9rem;
 }
