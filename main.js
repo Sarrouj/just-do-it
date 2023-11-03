@@ -19,7 +19,27 @@ let radioLow = document.getElementById('Low');
 let radioMidle = document.getElementById('Midle');
 let radioUrgent = document.getElementById('Urgent');
 
+// Array Contains the Data
 let existingTasks;
+
+// Reset All
+reset.addEventListener('click', ()=>{
+    existingTasks = [];
+    localStorage.clear();
+    while(tasksContainer.firstChild){
+        tasksContainer.removeChild(tasksContainer.firstChild);
+    }
+
+})
+
+// Reset the Inputs 
+function clearInputs(){
+    taskTitle.value = '';
+    description.value = '';
+    startDate.value = '';
+    endDate.value = '';
+}
+
 // Animate Header
 btn.addEventListener('click', ()=>{
     header.classList.add('animation');
@@ -60,41 +80,44 @@ function taskHeader(){
 }
 
 // generate Colors to Output
-function generateColors(p, iconsDiv, fromDiv, toDiv, remainingDiv){
+function generateColors(p, iconsDiv, fromDiv){
     switch(true){
         case radioLow.checked:
             iconsDiv.classList.add('low');
             p.classList.add('low');
-            fromDiv.classList.add('low');
-            toDiv.classList.add('low');
-            remainingDiv.classList.add('low');
+            // fromDiv.classList.add('low');
+            // toDiv.classList.add('low');
+            // remainingDiv.classList.add('low');
             break;
         case radioMidle.checked:
             iconsDiv.classList.add('middle');
             p.classList.add('middle');
-            fromDiv.classList.add('middle');
-            toDiv.classList.add('middle');
-            remainingDiv.classList.add('middle');
+            // fromDiv.classList.add('middle');
+            // toDiv.classList.add('middle');
+            // remainingDiv.classList.add('middle');
             break;
         case radioUrgent.checked:
             iconsDiv.classList.add('urgent');
             p.classList.add('urgent');
-            fromDiv.classList.add('urgent');
-            toDiv.classList.add('urgent');
-            remainingDiv.classList.add('urgent');
+            // fromDiv.classList.add('urgent');
+            // toDiv.classList.add('urgent');
+            // remainingDiv.classList.add('urgent');
             break;
     }
+
 }
 
 
 // Store the Data in the Local Storage
 function localStorageGenerate(taskId){
+    let checkedInput = document.querySelector('input[type=radio]:checked');
     let taskObject = {
         id : taskId,
         title : taskTitle.value,
         description : description.value,
         startDate : startDate.value,
         endDate : endDate.value,
+        priority : checkedInput.value,
     }
     // if there's a task get it from Local Storage if not make an empty array;
     existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -147,6 +170,28 @@ function generate(){
     liTask.appendChild(taskTitltBarDiv);
     tasksContainer.appendChild(liTask);
 
+    // Adjust on your Task
+    icon1.addEventListener('click', (e)=> {
+        let icon1Id = e.target.id;
+        let allTasks = tasksContainer.getElementsByTagName("li");
+        for(const task of existingTasks){
+            if(task.id == icon1Id){
+                taskTitle.value = task.title;
+                description.value = task.description;
+                startDate.value = task.startDate;
+                endDate.value = task.endDate;
+
+                for(const task of allTasks){
+                    if(task.id == icon1Id){
+                        task.remove();
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    })
+
     // Generate Time Bar and Description with toggeling
     icon3.addEventListener('click', (e)=> {
         let clickedElementId = e.target.id;
@@ -166,6 +211,7 @@ function generate(){
         }
     })
 
+    // Remove Task
     icon2.addEventListener('click', (e)=> {
         let clickedId = e.target.id;
         let allTasks = tasksContainer.getElementsByTagName("li");
@@ -221,11 +267,31 @@ function generate(){
                 descriptionDiv.appendChild(descriptionP);
                 liTask.appendChild(descriptionDiv);
 
-                generateColors(fromDiv, toDiv, remainingDiv);
+                // color 
+                switch(task.priority){
+                    case 'midle':
+                        toDiv.classList.add('middle');
+                        remainingDiv.classList.add('middle');
+                        fromDiv.classList.add('middle');
+                        break;
+                    case 'low':
+                        toDiv.classList.add('low');
+                        remainingDiv.classList.add('low');
+                        fromDiv.classList.add('low');
+                        break;
+                    case 'urgent':
+                        toDiv.classList.add('urgent');
+                        remainingDiv.classList.add('urgent');
+                        fromDiv.classList.add('urgent');
+                        break;
+                }
+
+                
                 break;
             }
         }
     }
+    clearInputs();
     generateColors(taskp, iconsDiv);
 }
 
@@ -266,7 +332,6 @@ function checkInputsGenerate(){
 
     if(noError == true){
         generate();
-        // form.reset();
     }
     
 }
