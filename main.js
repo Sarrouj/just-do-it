@@ -637,7 +637,7 @@ function countDown(){
         let endEnMillSeconds = new Date(endValue).getTime();
         let counter = setInterval(() => {
         let current = new Date().getTime();
-        if(startEnMillSeconds >= current){
+        if(startEnMillSeconds <= current){
             if(current >= endEnMillSeconds){
                 clearInterval(counter);
             }else{
