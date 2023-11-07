@@ -240,11 +240,12 @@ section .title-Filters ul :nth-child(4){
     color: rgb(255, 152, 17);
 }
 .urgent{
-    color:rgb(255, 4, 4);
+    color:rgb(222, 8, 8);
 }
 .completed{
     color: rgb(95, 180, 64) ;
 }
+
 
 /* Error */
 .error{
@@ -272,7 +273,8 @@ section .title-Filters ul :nth-child(4){
     padding: 0vh 2vw;
 }
 .tasksContainer .task > .taskTitleBar > .tasksHeader{
-    gap: 2vw
+    gap: 3vw;
+    align-items: center;
 }
 
 .tasksContainer .task > .taskTitleBar .iconsContainerurgent{
@@ -315,3 +317,65 @@ section .title-Filters ul :nth-child(4){
 .tasksContainer .DescriptionContainer > p {
     font-size: 0.9rem;
 }
+
+
+/* Custome CheckBox */
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    padding: 2vh 0vw;
+  }
+  
+  .custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: 3px solid rgb(210, 210, 210);
+    border-radius: 100%;
+  }
+  
+  .custom-checkbox:hover input ~ .checkmark {
+    background-color: #ddd;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark {
+    background: green;
+    border: 3px solid rgb(217, 217, 217);
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  /* Input Checked */
+
+  .checked{
+    background-color: rgb(217, 217, 217) !important;
+    color: rgb(161, 161, 161);
+  }
