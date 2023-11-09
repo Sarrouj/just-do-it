@@ -65,9 +65,13 @@ function taskHeader(){
          // filters
          let filters = document.querySelector('.filters');
          let liLow = document.createElement('li');
+         liLow.setAttribute('class', 'liLow');
          let liMiddle = document.createElement('li');
+         liMiddle.setAttribute('class', 'liMiddle');
          let liUrgent = document.createElement('li');
+         liUrgent.setAttribute('class', 'liUrgent');
          let liCompleted = document.createElement('li');
+         liCompleted.setAttribute('class', 'liCompleted');
          liLow.textContent = 'Low';
          liMiddle.textContent = 'Middle';
          liUrgent.textContent = 'Urgent';
@@ -653,8 +657,10 @@ function countDown(){
                 let results = `${daysNumber} : ${hoursNumber} : ${minutesNumber} : ${secondsNumber}`;
                 task.remaining = results;
                 let li = document.getElementById(task.id);
-                let countdownSpan = document.getElementById(task.id).children[1].children[1].children[0];
-                countdownSpan.textContent = results;
+                if(li.children.length > 1){
+                    let countdownSpan = document.getElementById(task.id).children[1].children[1].children[0]
+                    countdownSpan.textContent = results;
+                }
         
             }
         }else{
@@ -669,11 +675,86 @@ function countDown(){
             let secondsNumber = seconds < 10 ? `0${seconds}`: seconds;
             let results = `${daysNumber} : ${hoursNumber} : ${minutesNumber} : ${secondsNumber}`;
             task.remaining = results;
-            let countdownSpan = document.getElementById(task.id).children[1].children[1].children[0];
-            countdownSpan.textContent = results;
+            let li = document.getElementById(task.id);
+                if(li.children.length > 1){
+                    let countdownSpan = document.getElementById(task.id).children[1].children[1].children[0]
+                    countdownSpan.textContent = results;
+                }
         }
     }, 1000)
     }
     localStorage.setItem("tasks", JSON.stringify(existingTasks));
     console.log(existingTasks)
 }
+
+// Filetrs 
+
+function filters(){
+    let liLow = document.querySelector('.liLow');
+    let liMiddle = document.querySelector('.liMiddle');
+    let liUrgent = document.querySelector('.liUrgent');
+    let liCompleted = document.querySelector('.liCompleted');
+    liLow.addEventListener('click', function(){
+        for(let i=0 ; i < tasksContainer.children.length; i++){
+            let div = tasksContainer.children[i].children[0].children[1];
+            tasks = div.parentElement.parentElement;
+            if(div.classList.contains('low')){
+               tasks.style.display = 'block';
+            }else{
+                if(tasks.style.display == 'none'){
+                    tasks.style.display = 'block';
+                }else{
+                    tasks.style.display = 'none';
+                }
+            }
+        }
+    })
+    liMiddle.addEventListener('click', function(){
+        for(let i=0 ; i < tasksContainer.children.length; i++){
+            let div = tasksContainer.children[i].children[0].children[1];
+            tasks = div.parentElement.parentElement;
+            if(div.classList.contains('middle')){
+               tasks.style.display = 'block';
+            }else{
+                if(tasks.style.display == 'none'){
+                    tasks.style.display = 'block';
+                }else{
+                    tasks.style.display = 'none';
+                }
+            }
+        }
+    })
+    liUrgent.addEventListener('click', function(){
+        for(let i=0 ; i < tasksContainer.children.length; i++){
+            let div = tasksContainer.children[i].children[0].children[1];
+            tasks = div.parentElement.parentElement;
+            if(div.classList.contains('urgent')){
+               tasks.style.display = 'block';
+            }else{
+                if(tasks.style.display == 'none'){
+                    tasks.style.display = 'block';
+                }else{
+                    tasks.style.display = 'none';
+                }
+            }
+        }
+    })
+    liCompleted.addEventListener('click', ()=>{
+        for(let i=0 ; i < tasksContainer.children.length; i++){
+            let div = tasksContainer.children[i].children[0];
+            tasks = div.parentElement;
+            if(div.classList.contains('checked')){
+               tasks.style.display = 'block';
+            }else{
+                if(tasks.style.display == 'none'){
+                    tasks.style.display = 'block';
+                }else{
+                    tasks.style.display = 'none';
+                }
+            }
+        }
+    })
+    
+}
+
+filters()
