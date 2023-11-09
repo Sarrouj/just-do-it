@@ -268,8 +268,8 @@ function generate(){
                 fromDiv.className = 'from';
                 let toDiv = document.createElement('div');
                 toDiv.className = 'to';
-                fromDiv.textContent = 'From :';
-                toDiv.textContent = 'To :';
+                fromDiv.textContent = 'Start :';
+                toDiv.textContent = 'End :';
                 let fromSpan = document.createElement('span');
                 let toSpan = document.createElement('span');
                 fromSpan.className = 'fromSpan';
@@ -543,8 +543,8 @@ function generateTaskElement(task){
                 fromDiv.className = 'from';
                 let toDiv = document.createElement('div');
                 toDiv.className = 'to';
-                fromDiv.textContent = 'From :';
-                toDiv.textContent = 'To :';
+                fromDiv.textContent = 'Start :';
+                toDiv.textContent = 'End :';
                 let fromSpan = document.createElement('span');
                 let toSpan = document.createElement('span');
                 fromSpan.className = 'fromSpan';
@@ -708,6 +708,12 @@ function filters(){
                 }
             }
         }
+        // Clicked effect
+        if(liLow.classList.contains('clickedLow')){
+            liLow.classList.remove('clickedLow');
+        }else{
+            liLow.classList.add('clickedLow');
+        }
     })
     liMiddle.addEventListener('click', function(){
         for(let i=0 ; i < tasksContainer.children.length; i++){
@@ -722,6 +728,12 @@ function filters(){
                     tasks.style.display = 'none';
                 }
             }
+        }
+        // Clicked effect
+        if(liMiddle.classList.contains('clickedMiddle')){
+            liMiddle.classList.remove('clickedMiddle');
+        }else{
+            liMiddle.classList.add('clickedMiddle');
         }
     })
     liUrgent.addEventListener('click', function(){
@@ -738,6 +750,12 @@ function filters(){
                 }
             }
         }
+        // Clicked effect
+        if(liUrgent.classList.contains('clickedUrgent')){
+            liUrgent.classList.remove('clickedUrgent');
+        }else{
+            liUrgent.classList.add('clickedUrgent');
+        }
     })
     liCompleted.addEventListener('click', ()=>{
         for(let i=0 ; i < tasksContainer.children.length; i++){
@@ -753,8 +771,12 @@ function filters(){
                 }
             }
         }
+        if(liCompleted.classList.contains('clickedCompleted')){
+            liCompleted.classList.remove('clickedCompleted');
+        }else{
+            liCompleted.classList.add('clickedCompleted');
+        }
     })
-    
 }
 
 filters()
